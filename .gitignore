@@ -1,4 +1,5 @@
 build/
+!build/webpack.config.js
 dist/
 node_modules/
 package-lock.json

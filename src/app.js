@@ -1,7 +1,7 @@
 import "./main.scss";
 
 import "./js/responsive.js";
-
+import "./js/image-background";
 
 $('.header-menu__icon').on('click', function () {
 

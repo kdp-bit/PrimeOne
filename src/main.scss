@@ -3,6 +3,41 @@
 @import "scss/variables";
 @import "scss/normalize";
 
+.btn {
+  height: 50px;
+  line-height: 50px;
+  background-color: black;
+  display: inline-block;
+  padding: 0 33px;
+  font-size: 15px;
+  font-family: Bebas, serif;
+  text-transform: uppercase;
+  color: white;
+  letter-spacing: 1.5px;
+
+  &--w {
+    background-color: #ffffff;
+    color: #000000;
+  }
+
+  &:hover {
+  }
+
+  &.fw {
+    width: 100%;
+  }
+}
+
+.ibg {
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+
+  img {
+    display: none;
+  }
+}
+
 .wrapper {
   width: 100%;
   min-height: 100%;
@@ -26,3 +61,4 @@
 }
 
 @import "header/header.component";
+@import "private/pricate.component";
