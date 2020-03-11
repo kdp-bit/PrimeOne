@@ -28,6 +28,38 @@
   }
 }
 
+input[type=text], input[type=email], input[type=tel], textarea {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+.input {
+  border-radius: 0 !important;
+  width: 100%;
+  display: block;
+  padding: 0 18px;
+  height: 50px;
+  border: 2px solid #959595;
+  background-color: #252525;
+  color: #959595;
+  font-size: 15px;
+
+  &.focus {
+  }
+
+  &.err {
+    border: 2px solid red;
+  }
+}
+
+textarea.input {
+  resize: none;
+  height: 100px;
+  padding: 10px 18px;
+
+}
+
 .ibg {
   background-position: center;
   background-size: cover;
@@ -64,3 +96,4 @@
 @import "components/private/pricate.component";
 @import "components/products/products.component";
 @import "components/why/why.component";
+@import "components/contacts/contacts.component";

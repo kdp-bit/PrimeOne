@@ -2,7 +2,8 @@ import "./main.scss";
 
 import "./js/responsive.js";
 import "./js/image-background";
-
+import "./js/map";
+import "./js/forms"
 // Images
 
 $('.header-menu__icon').on('click', function () {
