@@ -3,4 +3,4 @@
 
 | Laptop        | Are           | Cool  |
 | ------------- |:-------------:| -----:|
-|![alt text](screen/01.png |250x250)       | right-aligned | $1600 |
+|<img src="/screen/01.png" width="300">       | right-aligned | $1600 |
