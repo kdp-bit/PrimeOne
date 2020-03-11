@@ -3,6 +3,7 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const autoprefixer = require('autoprefixer');
+const CopyPlugin = require('copy-webpack-plugin');
 const isDevelopment = process.env.NODE_ENV !== 'production';
 module.exports = {
     entry: {
@@ -51,41 +52,6 @@ module.exports = {
                 ]
             },
             {
-                test: /\.(jpg|png|gif)$/,
-                use: [
-                    {
-                        loader: "file-loader",
-                        options: {
-                            name: '[name].[ext]',
-                            outputPath: 'static/',
-                            useRelativePath: true,
-                        }
-                    },
-                    {
-                        loader: 'image-webpack-loader',
-                        options: {
-                            mozjpeg: {
-                                progressive: true,
-                                quality: 65
-                            },
-                            optipng: {
-                                enabled: true,
-                            },
-                            pngquant: {
-                                quality: '65-90',
-                                speed: 4
-                            },
-                            gifsicle: {
-                                interlaced: false,
-                            },
-                            webp: {
-                                quality: 75
-                            }
-                        }
-                    }
-                ]
-            },
-            {
                 test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
                 use: [
                     {
@@ -126,6 +92,9 @@ module.exports = {
         new webpack.ProvidePlugin({
             $: 'jquery',
             jQuery: 'jquery'
-        })
+        }),
+        new CopyPlugin([
+            { from: 'src/static', to: 'static' },
+        ]),
     ]
 };

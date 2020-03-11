@@ -3,6 +3,8 @@ import "./main.scss";
 import "./js/responsive.js";
 import "./js/image-background";
 
+// Images
+
 $('.header-menu__icon').on('click', function () {
 
     const body =  $('body');
