@@ -1,4 +1,4 @@
-function map(n) {
+function map() {
     google.maps.Map.prototype.setCenterWithOffset = function (latlng, offsetX, offsetY) {
         const map = this;
         const ov = new google.maps.OverlayView();
@@ -14,8 +14,7 @@ function map(n) {
         };
         ov.setMap(this);
     };
-
-    const infowindow = new google.maps.InfoWindow({
+    new google.maps.InfoWindow({
         //pixelOffset: new google.maps.Size(-230,250)
     });
     const locations = [
@@ -29,23 +28,11 @@ function map(n) {
         scrollwheel: false,
         mapTypeId: google.maps.MapTypeId.ROADMAP
     };
-    const map = new google.maps.Map(document.getElementById('map'), options);
-    const icon = {
-        url: 'img/icons/map.svg',
-        scaledSize: new google.maps.Size(18, 20),
-        anchor: new google.maps.Point(9, 10)
-    };
-    const markers = [];
-    for (let i = 0; i < locations.length; i++) {
-        const marker = new google.maps.Marker({
-            //icon:icon,
-            position: locations[i][0],
-            map: map,
-        });
-        markers.push(marker);
-    }
+    new google.maps.Map(document.getElementById('map'), options);
+
 }
 
+console.log($('body'))
 if ($("#map").length > 0) {
     map();
 }

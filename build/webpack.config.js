@@ -3,12 +3,11 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const autoprefixer = require('autoprefixer');
-const CopyPlugin = require('copy-webpack-plugin');
 const isDevelopment = process.env.NODE_ENV !== 'production';
 module.exports = {
     entry: {
         bundle: './src/app.js'
-    } ,
+    },
     output: {
         path: path.resolve(__dirname, '../dist')
     },
@@ -20,7 +19,14 @@ module.exports = {
     },
     module: {
         rules: [
-            { test: /\.handlebars$/, loader: "handlebars-loader" },
+            {
+                test: /\.handlebars$/,
+                use: [
+                    'handlebars-loader',
+                    'extract-loader',
+                    'html-loader'
+                ],
+            },
             {
                 test: /\.(scss|css)$/,
                 use: [
@@ -52,7 +58,7 @@ module.exports = {
                 ]
             },
             {
-                test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
+                test: /\.(woff(2)?|ttf|eot)(\?v=\d+\.\d+\.\d+)?$/,
                 use: [
                     {
                         loader: 'file-loader',
@@ -62,12 +68,41 @@ module.exports = {
                         }
                     }
                 ]
+            },
+            {
+                test: /\.(gif|png|jpe?g|svg)$/i,
+                use: [
+                    'file-loader',
+                    {
+                        loader: 'image-webpack-loader',
+                        options: {
+                            mozjpeg: {
+                                progressive: true,
+                                quality: 65
+                            },
+                            // optipng.enabled: false will disable optipng
+                            optipng: {
+                                enabled: false,
+                            },
+                            pngquant: {
+                                quality: [0.65, 0.90],
+                                speed: 4
+                            },
+                            gifsicle: {
+                                interlaced: false,
+                            },
+                            // the webp option will enable WEBP
+                            webp: {
+                                quality: 75
+                            }
+                        }
+                    }
+                ]
             }
 
         ]
     },
     plugins: [
-        /** Since Webpack 4 */
         new webpack.LoaderOptionsPlugin({
             options: {
                 handlebarsLoader: {}
@@ -77,7 +112,6 @@ module.exports = {
             filename: "[name]-styles.css",
             chunkFilename: "[id].css"
         }),
-
         new HtmlWebpackPlugin({
             title: 'My awesome service',
             template: './src/index.handlebars',
@@ -86,15 +120,11 @@ module.exports = {
                 collapseWhitespace: true,
                 caseSensitive: true,
                 removeComments: true,
-                removeEmptyElements: true
             },
         }),
         new webpack.ProvidePlugin({
             $: 'jquery',
             jQuery: 'jquery'
-        }),
-        new CopyPlugin([
-            { from: 'src/static', to: 'static' },
-        ]),
+        })
     ]
-};
+}

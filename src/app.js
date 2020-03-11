@@ -1,8 +1,8 @@
 import "./main.scss";
 
-import "./js/responsive.js";
-import "./js/image-background";
-import "./js/map";
+require('./js/responsive');
+require("./js/image-background");
+require("./js/map");
 import "./js/forms"
 // Images
 
