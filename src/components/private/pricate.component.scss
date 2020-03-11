@@ -4,6 +4,10 @@
 .private{
   @include flex-box();
   background-color: #000000;
+  margin: 0 0 75px 0;
+  @media (max-width: $md2+px) {
+    margin: 0 0 40px 0;
+  }
   .private__column{
     flex: 0 0 50%;
     @media (max-width: $md2+px) {
